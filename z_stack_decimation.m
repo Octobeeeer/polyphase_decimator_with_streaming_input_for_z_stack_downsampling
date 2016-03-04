@@ -10,7 +10,7 @@ freqz(h,1,1024);
 title('Frequency response.');
 %Dimension of each image
 curfolder = 'H:\checkpoint7_zee_high_na\';
-outdir = 'H:\checkpoint7_zee_high_na_ds\';
+outdir = 'C:\Embryo_checkpoint_7_ds\';
 ff=0;
 tt=0;
 chh=1;
@@ -38,6 +38,9 @@ h_poly_length = h_L1/Mz; %Length of each polyphase filter
 zz = zz(1:floor(length(zz)/Mz)*Mz);
 datalength = length(zz);
 %Now, go downsampling the data
+p=gcp;
+delete(p);
+p=parpool(4);
 parfor m=mm
     for f=ff
         for t=tt
