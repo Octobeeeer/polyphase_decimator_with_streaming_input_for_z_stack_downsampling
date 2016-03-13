@@ -2,23 +2,23 @@
 clc;
 close all;
 clear all;
-Ma = 0.6349; %Downsampling factor in xy
-curfolder = 'F:\QDIC\Embryo_data_for_tomography_March_4\Checkpoint_8_63x_dx_eq_dz_0_1_um';
-outdir = 'F:\QDIC\Embryo_data_for_tomography_March_4\Checkpoint_8_40x';
+Ma = 0.5; %Downsampling factor in xy
+curfolder = '/Users/Tan_Nguyen/Documents/Data_for_QDIC/Embryo_20x_checkpoint_8';
+outdir = '/Users/Tan_Nguyen/Documents/Data_for_QDIC/Embryo_20x_checkpoint_8_true_scale';
 ff=0;
 tt=0;
 chh=1;
 ii=0;
 cc=0;
 rr=0;
-zz = 11:3709
-fname =@(odir,f,t,i,ch,c,r,z,s) sprintf('%s\\f%d_t%d_i%d_ch%d_c%d_r%d_z%d_%s.tif',odir,f,t,i,ch,c,r,z,s);
+zz = 677:819
+fname =@(odir,f,t,i,ch,c,r,z,s) sprintf('%s/f%d_t%d_i%d_ch%d_c%d_r%d_z%d_%s.tif',odir,f,t,i,ch,c,r,z,s);
 
 %Now, go downsampling the data
 %p=gcp;
 %delete(p);
 %p=parpool(4);
-ss = {'qdic','jamp','int'};
+ss = {'qdic'};
 
     for z=zz
         for f=ff
