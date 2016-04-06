@@ -3,19 +3,22 @@
 clc;
 close all;
 clear all;
-Md = 25; %Downsampling factor in z
-Mu = 2; %Upsampling factor in z. The combined factor between downsampling and upsampling will be a new resampling factor of Mu/Mz
-L = 19; %Filter length
+Md = 2; %Downsampling factor in z
+Mu = 1; %Upsampling factor in z. The combined factor between downsampling and upsampling will be a new resampling factor of Mu/Mz
+L = 11; %Filter length
 h = fir1(L,1/Md*0.9);
 figure(1);freqz(h,1,1024);
 title('(Downsampling filter) Frequency response.');
 
 
 %Dimension of each image
-curfolder = 'X:\Mikhail\QDIC\Embryos_2016_02_26\checkpoint6_zees_more';
-outdir = 'G:\QDIC_data\Data_for_QDIC\10x_data\Checkpoint6\Raw_frames';
-ff=0:13;
-tt=0;
+curfolder = 'D:\Mikhail\QDIC\Embryos_2016_02_26\checkpoint7_zee_high_na_63\qdic\f0_t0';
+outdir = 'D:\Tan_QDIC_embryos\Embryo\63x_data\\checkpoint7_zee_high_na_63\f0_t0';
+if (~exist(outdir))
+    mkdir(outdir);
+end
+ff=0;
+tt=0:0;
 chh=1;
 ii=0;
 cc=0;
@@ -28,10 +31,10 @@ fname2 =@(odir,f,t,i,ch,c,r,z,str) sprintf('%s\\f%d_t%d_i%d_ch%d_c%d_r%d_z%d_%s.
 
 
 
-%Now, go downsampling the data
-p=gcp;
-delete(p);
-p=parpool(4);
+% %Now, go downsampling the data
+% p=gcp;
+% delete(p);
+% p=parpool(2);
 
 
 hr = fir1(L,1/max(Mu,Md)*0.9);
@@ -50,7 +53,7 @@ h_poly_length = h_L1/Md; %Length of each polyphase filter
     
 newdatalength = ceil(length(zz)*Mu/Md)*Md;%Make sure the new size is is 
 disp(['Original data length: ' num2str(length(zz)) ', new length after upsampling: ' num2str(newdatalength)]);
-frametype = 'raw';
+frametype = 'qdic';%'raw' or 'qdic'
 for f=ff
     for t=tt
         for i=ii
@@ -62,7 +65,7 @@ for f=ff
                             tempim = imread(fname(curfolder,ff(1),tt(1),ii(1),chh(1),cc(1),rr(1),zz(1),mm(1)));
                             nrows = size(tempim,1);
                             ncols = size(tempim,2);
-                            parfor m=mm
+                            for m=mm
                                     input_buffer = zeros(nrows,ncols,size(h_poly,1));%Buffer the input
                                     outputidx = 1;
                                     lastidx_non_upsampled = 0; %This is the indices of the original dataset that was added and not upsampled

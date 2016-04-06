@@ -3,8 +3,8 @@
 clc;
 close all;
 clear all;
-Md = 23; %Downsampling factor in z
-Mu = 3; %Upsampling factor in z. The combined factor between downsampling and upsampling will be a new resampling factor of Mu/Mz
+Md = 2; %Downsampling factor in z
+Mu = 1; %Upsampling factor in z. The combined factor between downsampling and upsampling will be a new resampling factor of Mu/Mz
 L = 19; %Filter length
 h = fir1(L,1/Md*0.9);
 figure(1);freqz(h,1,1024);
@@ -13,9 +13,12 @@ title('(Downsampling filter) Frequency response.');
 
 %Dimension of each image
 curfolder = 'D:\Mikhail\QDIC\Embryos_2016_02_26\checkpoint6_zees_more';
-outdir = 'D:\Mikhail\QDIC\Embryos_2016_02_26\10x_data\Checkpoint6\Raw_frames';
-ff=10:13;
-tt=0:1;
+outdir = 'D:\Mikhail\QDIC\Embryos_2016_02_26\40x_data\checkpoint6_zees_more\Raw_frames';
+if (~exist(outdir))
+    mkdir(outdir);
+end
+ff=10;
+tt=0:0;
 chh=1;
 ii=0;
 cc=0;
@@ -51,8 +54,8 @@ h_poly_length = h_L1/Md; %Length of each polyphase filter
 newdatalength = ceil(length(zz)*Mu/Md)*Md;%Make sure the new size is is 
 disp(['Original data length: ' num2str(length(zz)) ', new length after upsampling: ' num2str(newdatalength)]);
 frametype = 'raw';
-for f=ff
-    parfor t=tt
+parfor f=ff
+    for t=tt
         for i=ii
             for ch=chh
                 for c=cc
