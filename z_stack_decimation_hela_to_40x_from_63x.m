@@ -17,8 +17,8 @@ outdir = 'H:\Tan_QDIC_hela_40x_dec\'; %Decimated folder
 if (~exist(outdir))
     mkdir(outdir);
 end
-ff=[4,6,8,10,14,22,24,26];
-tt=0:22;
+ff=[26];
+tt=21:22;
 chh=0;
 ii=0;
 cc=0;
