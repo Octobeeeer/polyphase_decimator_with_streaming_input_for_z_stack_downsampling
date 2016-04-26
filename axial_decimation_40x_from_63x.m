@@ -3,13 +3,13 @@ clc;
 close all;
 clear all;
 Ma = 0.6349; %Downsampling factor in xy
-curfolder = 'E:\Tan_QDIC_hela_63x\';
-outdir = 'E:\Tan_QDIC_hela_40x\';
+curfolder = 'H:\Tan_QDIC_hela_63x\';
+outdir = 'H:\Tan_QDIC_hela_40x\';
 if (~exist(outdir))
     mkdir(outdir);
 end
-ff=[4,6,8,10,14,22,24,26];
-tt=2:22;
+ff=[26];
+tt=21:22;
 chh=0;
 ii=0;
 cc=0;
@@ -28,7 +28,7 @@ end
 %p=gcp;
 %delete(p);
 %p=parpool(8);
-override = 1;
+override = 0;
 frametype = 'qdic';
 if (strcmp(frametype,'raw'))
     ss = {'m0','m1','m2','m3'}; 
