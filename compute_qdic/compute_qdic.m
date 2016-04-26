@@ -2,8 +2,11 @@ clc; clear all;close all;
 r=0;t=0;c=1;n=1:1200;
 %49
 %284 600 298 , middle 119,251,169
-basedir='X:\Mikhail\QDIC\Embryos_2016_02_26\checkpoint5_zee_timelapse';
-outdir='D:\Temp_data_for_cp5_timelapse';
+basedir='Z:\Mikhail\QDIC\Embryos_2016_02_26\20x_data\Checkpoint6_zee_more\Raw_frames';
+outdir='Z:\Mikhail\QDIC\Embryos_2016_02_26\20x_data\Checkpoint6_zee_more\qdic';
+if (~exist(outdir))
+    mkdir(outdir);
+end
 fname =@(odir,f,t,i,ch,c,r,z,m) sprintf('%s\\f%d_t%d_i%d_ch%d_c%d_r%d_z%d_m%d.tif',odir,f,t,i,ch,c,r,z,m);
 fout =@(odir,f,t,i,ch,c,r,z,str) sprintf('%s\\f%d_t%d_i%d_ch%d_c%d_r%d_z%d_%s.tif',odir,f,t,i,ch,c,r,z,str);
 
