@@ -3,13 +3,13 @@ clc;
 close all;
 clear all;
 Ma = 0.6349; %Downsampling factor in xy
-curfolder = 'H:\Tan_QDIC_hela_63x\';
-outdir = 'H:\Tan_QDIC_hela_40x\';
+curfolder = 'Z:\Mikhail\QDIC\Embryos_2016_02_26\checkpoint6_zees_more\';
+outdir = 'Z:\Mikhail\QDIC\Embryos_2016_02_26\40x_data\checkpoint6_zees_more\Raw_frames\';
 if (~exist(outdir))
     mkdir(outdir);
 end
-ff=[26];
-tt=21:22;
+ff=0:13;
+tt=0:2;
 chh=0;
 ii=0;
 cc=0;
